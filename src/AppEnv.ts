@@ -33,7 +33,8 @@ const AppEnv: IAppEnv = {
   HA_ENTITY: import.meta.env.VITE_HA_ENTITY,
 
   OCCUPIED_INTERVAL: import.meta.env.VITE_OCCUPIED_INTERVAL,
-  ENABLE_OCCUPANCY: JSON.parse(import.meta.env.VITE_ENABLE_OCCUPANCY),
+  // Change this to false to disable occupancy detection
+  ENABLE_OCCUPANCY: false, // or JSON.parse('false')
 
   PLAYING_USE_BLUR: JSON.parse(import.meta.env.VITE_PLAYING_USE_BLUR),
 };

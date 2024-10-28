@@ -4,6 +4,7 @@ import useScreenTimeout from './useScreenTimeout.ts';
 
 const usePlayingApplication = () => {
   const occupied = useOccupied();
+  console.log('Occupied state:', occupied);
 
   const { loading, previouslyLoaded, currentlyPlaying } =
     useGetCurrentlyPlaying(occupied);

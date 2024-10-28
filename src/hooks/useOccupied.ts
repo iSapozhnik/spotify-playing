@@ -4,9 +4,15 @@ import axios from 'axios';
 import AppEnv from '../AppEnv.ts';
 
 const useOccupied = () => {
-  const [occupied, setOccupied] = useState<boolean>(AppEnv.ENABLE_OCCUPANCY);
+  // Change this line to return true by default when occupancy is disabled
+  const [occupied, setOccupied] = useState<boolean>(!AppEnv.ENABLE_OCCUPANCY || true);
 
   const updateIsOccupied = useCallback(() => {
+    if (!AppEnv.ENABLE_OCCUPANCY) {
+      setOccupied(true);
+      return;
+    }
+
     axios
       .get(`${AppEnv.HA_URL}/api/states/${AppEnv.HA_ENTITY}`, {
         headers: {

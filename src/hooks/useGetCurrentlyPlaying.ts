@@ -25,6 +25,8 @@ const useGetCurrentlyPlaying = (enable: boolean) => {
             response.data = null;
           }
 
+          console.log('Spotify API response:', response.status, response.data);
+
           if (response.data) {
             // Clear some of the values that we don't care about, but which
             // cause the object to change.
@@ -49,8 +51,11 @@ const useGetCurrentlyPlaying = (enable: boolean) => {
     let id: number | undefined = undefined;
 
     if (enable) {
+      console.log('Setting up Spotify polling interval');
       id = setInterval(loadData, AppEnv.SPOTIFY_INTERVAL);
       void loadData();
+    } else {
+      console.log('Spotify polling disabled');
     }
 
     return () => {
